@@ -7,6 +7,9 @@
 
 </div>
 
+
+https://github.com/Alienpups/OpenVoice/blob/main/docs/USAGE_WINDOWS.md
+
 ## Introduction
 
 ### OpenVoice V1

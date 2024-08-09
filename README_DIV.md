@@ -9,4 +9,4 @@
 https://github.com/Alienpups/OpenVoice/blob/main/docs/USAGE_WINDOWS.md
 7. Run `fastapi dev main.py` to run the voice generation server locally or `fastpi run main.py` to serve it
 8. After 'Application startup complete' visit http://localhost:8000/ to confirm hello world response
-9. 
+9. Optionally deploy or use ngrok to serve locally & update the main hub code to use this api

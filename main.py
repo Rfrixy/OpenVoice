@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Response
 from fastapi.responses import FileResponse
 import wave
 import numpy as np
@@ -39,6 +39,7 @@ async def generate_wav_file(
     generate_wav(frequency, duration, filename)
     return FileResponse(filename, media_type='audio/wav', filename=filename)
 
+
 @app.get("/generate-voice/")    
 async def generate_voice_file(
     text = Query(..., title="text", description="Frequency of the sine wave in Hz"),
@@ -46,3 +47,13 @@ async def generate_voice_file(
     filename = "output.wav"
     output_file_src = voicegen.generate_voice(text, 0.87, filename)
     return FileResponse(output_file_src, media_type='audio/wav', filename=filename)
+
+@app.get("/generate-voice-blob/")
+async def generate_voice_blob(
+    text = Query(..., title="text", description="Frequency of the sine wave in Hz"),
+):
+    filename = "output.wav"
+    output_file_src = voicegen.generate_voice(text, 0.87, filename)
+    with open(output_file_src, "rb") as f:
+        audio_bytes = f.read()
+    return Response(content=audio_bytes, media_type="audio/wav")

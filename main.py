@@ -4,6 +4,8 @@ import wave
 import numpy as np
 import sys
 import os
+from fastapi.middleware.cors import CORSMiddleware
+
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
@@ -13,6 +15,14 @@ import voicegen
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 @app.get("/")
 def read_root():
